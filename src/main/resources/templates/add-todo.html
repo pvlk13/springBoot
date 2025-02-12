@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/html">
+<head th:replace="fragments :: head"/>
+<body>
+<div class="container">
+    <div th:replace="fragments :: navbar"/>
+    <h1>Enter Todo Details</h1>
+  <form th:action="@{/add-todo}"  th:object="${todo}"   method="post" >
+      <fieldset class="mb-4">
+          <form:label>Description</form:label>
+          <input type="text" name="description" th:field="*{description}" required="required"/>
+          <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" th:errorclass="error"></span>
+      </fieldset>
+      <fieldset class="mb-4">
+          <form:label>Target Date</form:label>
+          <input type="date" name="targetDate" th:field="*{targetDate}" required="required" />
+          <span th:if="${#fields.hasErrors('targetDate')}" th:errors="*{targetDate}" th:errorclass="error"></span>
+      </fieldset>
+      <input type="hidden" th:field="*{id}"/>
+      <input type="hidden" th:field="*{done}"/>
+      <input class="btn btn-success" type="submit"/>
+  </form>
+</div>
+</body>
+</html>

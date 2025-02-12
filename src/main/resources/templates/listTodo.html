@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"/>
+<body>
+<div class="container">
+    <div th:replace="fragments :: navbar"/>
+  <h1>Your Todo List are:</h1>
+   <table class="table table-primary table-striped-columns">
+       <thead>
+       <tr>
+       <th scope="col">Id</th>
+       <th scope="col">User Name</th>
+       <th scope="col">Description</th>
+       <th scope="col">Target Date</th>
+       <th scope="col">Status</th>
+           <th></th>
+           <th></th>
+       </tr>
+
+       </thead>
+       <tbody>
+       <tr th:each="todos : ${todos}">
+           <td  th:text="${todos.id}"></td>
+           <td  th:text="${todos.userName}"></td>
+           <td  th:text="${todos.description}"></td>
+           <td  th:text="${todos.targetDate}"></td>
+           <td  th:text="${todos.done}"></td>
+           <td><a th:href="@{/delete-todos/{id}(id=${todos.id})}" class="btn btn-warning">DELETE </a>
+           </td>
+           <td><a th:href="@{/update-todos/{id}(id=${todos.id})}" class="btn btn-primary">UPDATE </a></td>
+
+       </tr>
+       </tbody>
+
+   </table>
+    <a href="add-todo" class="btn btn-success">Add Todo</a>
+</div>
+</body>
+</html>
